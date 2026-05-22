@@ -71,7 +71,15 @@ export default function ChatWidget() {
       >
         {open
           ? <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          : <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          : <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              {/* Head */}
+              <circle cx="12" cy="8" r="3.5"/>
+              {/* Body / shoulders */}
+              <path d="M5 20c0-3.866 3.134-7 7-7s7 3.134 7 7"/>
+              {/* Antenna */}
+              <line x1="12" y1="1" x2="12" y2="4.5"/>
+              <circle cx="12" cy="1" r="0.8" fill="currentColor" stroke="none"/>
+            </svg>
         }
         {/* Pulse dot */}
         {!open && (
