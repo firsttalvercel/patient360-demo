@@ -9,8 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        navy: "#0a0e1a",
+        "mulesoft-blue": "#00A1E0",
+        "docplanner-green": "#00b67a",
+      },
+      fontFamily: {
+        mono: ["JetBrains Mono", "monospace"],
       },
     },
   },
