@@ -57,7 +57,7 @@ export default function PlatformView({ lines, isLoading }: Props) {
                 <span className="text-white/15 select-none">{'─'.repeat(36)}</span>
               ) : (
                 <>
-                  <span className={line.type === 'loading' ? 'animate-spin inline-block' : ''}>
+                  <span className={`shrink-0 w-3 text-center${line.type === 'loading' ? ' animate-spin' : ''}`}>
                     {icons[line.type]}
                   </span>
                   <span>{line.text}</span>
