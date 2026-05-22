@@ -21,8 +21,8 @@ const skills: Skill[] = [
     labelColor: 'bg-blue-100 text-[#00A1E0] border-blue-200',
     title: 'Appointments by Name',
     desc: 'Natural language query returns all appointments for a patient by their full name.',
-    query: 'Carlos Ruiz',
-    queryLabel: 'Show Carlos Ruiz',
+    query: 'Luis Herrera',
+    queryLabel: 'Show Luis Herrera',
   },
   {
     label: 'A2A',
@@ -45,7 +45,7 @@ const skills: Skill[] = [
     labelColor: 'bg-emerald-100 text-[#00b67a] border-emerald-200',
     title: 'Search Referrals',
     desc: 'Find existing referrals by patient name or referral ID across the FHIR backend.',
-    query: 'Carlos Ruiz',
+    query: 'Luis Herrera',
     queryLabel: 'Referrals for Carlos',
   },
   {

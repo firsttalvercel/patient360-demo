@@ -92,7 +92,7 @@ export async function POST(req: NextRequest) {
       const demoCount: Record<string, number> = {
         'alice johnson': 2,
         'john smith':    1,
-        'carlos ruiz':   0,
+        'luis herrera':  0,
       }
       const seed  = key.split('').reduce((acc: number, c: string) => acc + c.charCodeAt(0), 0)
       const count = demoCount[key] ?? [0, 1, 1, 2][seed % 4]

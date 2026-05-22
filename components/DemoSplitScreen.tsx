@@ -20,10 +20,10 @@ type OptimisticUpdate = Partial<Appointment> | 'delete'
 
 const SCENARIOS = [
   { tag: '360', color: 'bg-purple-100 text-purple-700 border-purple-200', name: 'Patient 360', query: 'Alice Johnson', hint: 'Full view — appts + referrals' },
-  { tag: 'A2A', color: 'bg-blue-100 text-[#00A1E0] border-blue-200',       name: 'By Name',     query: 'Carlos Ruiz',    hint: 'Appointments by patient name' },
+  { tag: 'A2A', color: 'bg-blue-100 text-[#00A1E0] border-blue-200',       name: 'By Name',     query: 'Luis Herrera',    hint: 'Appointments by patient name' },
   { tag: 'A2A', color: 'bg-blue-100 text-[#00A1E0] border-blue-200',       name: 'By Name',     query: 'John Smith',     hint: 'Try another patient' },
   { tag: 'MCP', color: 'bg-emerald-100 text-[#00b67a] border-emerald-200', name: 'Referrals',   query: 'Alice Johnson',  hint: 'Referrals from FHIR backend' },
-  { tag: 'MCP', color: 'bg-emerald-100 text-[#00b67a] border-emerald-200', name: 'Referrals',   query: 'Carlos Ruiz',    hint: 'Referrals for Carlos' },
+  { tag: 'MCP', color: 'bg-emerald-100 text-[#00b67a] border-emerald-200', name: 'Referrals',   query: 'Luis Herrera',    hint: 'Referrals for Luis' },
 ]
 
 let logCounter = 0
