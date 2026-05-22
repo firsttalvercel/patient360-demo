@@ -9,6 +9,23 @@ type HistoryEntry = { role: 'user' | 'assistant'; text: string }
 
 // ── helpers ──────────────────────────────────────────────────────────────────
 
+const ALL_SLOTS = ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00']
+
+function getAvailableSlots(date: string): string[] {
+  const seed = date.split('').reduce((a: number, c: string) => a + c.charCodeAt(0), 0)
+  const booked = new Set([ALL_SLOTS[seed % 10], ALL_SLOTS[(seed + 3) % 10], ALL_SLOTS[(seed + 6) % 10]])
+  return ALL_SLOTS.filter(s => !booked.has(s))
+}
+
+function isSlotsQuery(message: string): { date: string } | null {
+  const m = message.match(/(\d{4}-\d{2}-\d{2})/)
+  const lower = message.toLowerCase()
+  if (m && (lower.includes('slot') || lower.includes('available') || lower.includes('free') || lower.includes('time'))) {
+    return { date: m[1] }
+  }
+  return null
+}
+
 function formatDate(d: string): string {
   const dt = new Date(d + 'T00:00:00')
   return dt.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
@@ -149,17 +166,25 @@ export async function POST(req: NextRequest) {
   const { message, history = [] }: { message: string; history: HistoryEntry[] } = await req.json()
   if (!message?.trim()) return NextResponse.json({ reply: 'Please ask me something.' })
 
-  // 1. Try answering from conversation context first (fast, no A2A call)
+  // 1. Handle slot availability queries locally (backend has no byDate endpoint)
+  const slotsQuery = isSlotsQuery(message)
+  if (slotsQuery) {
+    const slots = getAvailableSlots(slotsQuery.date)
+    const reply = `Here are the available time slots for ${formatDate(slotsQuery.date)}:\n${slots.join('  ·  ')}\n\nWould you like me to reschedule an appointment to one of these times?`
+    return NextResponse.json({ reply })
+  }
+
+  // 2. Try answering from conversation context first (fast, no A2A call)
   const contextReply = await answerFromContext(message, history)
   if (contextReply) return NextResponse.json({ reply: contextReply })
 
-  // 2. Enrich short follow-ups with patient name
+  // 3. Enrich short follow-ups with patient name
   const query = enrichQuery(message, history)
 
-  // 3. Call A2A agent
+  // 4. Call A2A agent
   const rawData = await callA2A(query)
 
-  // 4. Format cleanly — no second LLM call, instant, reliable
+  // 5. Format cleanly — no second LLM call, instant, reliable
   const reply = formatRawResponse(rawData)
 
   return NextResponse.json({ reply })

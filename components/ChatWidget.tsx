@@ -11,10 +11,8 @@ let msgCounter = 0
 const makeId = () => `msg-${++msgCounter}-${Date.now()}`
 
 const SUGGESTIONS = [
-  'Show appointments for Alice Johnson',
-  'Reschedule appointment 1 to 2026-09-01 at 09:00',
-  'Cancel appointment 2',
-  'What slots are available on 2026-09-10 for appointment 3?',
+  "Show appointments for Alice Johnson",
+  "When is Alice Johnson's next appointment?",
 ]
 
 export default function ChatWidget() {
@@ -24,7 +22,7 @@ export default function ChatWidget() {
     {
       id: makeId(),
       role: 'assistant',
-      text: "Hi! I'm your Patient 360 assistant. Ask me anything about appointments — look up, reschedule, cancel, or check availability.",
+      text: "Hello! I'm your Patient 360 assistant. I'm here to help you look up appointments, reschedule, or cancel. How can I assist you today?",
     },
   ])
   const [loading, setLoading] = useState(false)
